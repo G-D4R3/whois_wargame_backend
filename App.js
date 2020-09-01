@@ -10,6 +10,7 @@ const app = express();
 const PORT = 3000;
 
 var joinRouter = require('./routes/join');
+var loginRouter = require('./routes/login');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -18,6 +19,7 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use('/api/join', joinRouter);
+app.use('/api/login', loginRouter);
 
 app.post('/api/hello', (req,res) => {
     res.send({

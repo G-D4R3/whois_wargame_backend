@@ -37,7 +37,6 @@ router.post('/', function (req, res, next) {
     console.log(req.body);
     //dbConObj.dbopen(dbconnect);
 
-    var result = new Object();
     var email_query =  "SELECT * FROM user WHERE email LIKE '"+email+"'";
     var id_query =  "SELECT * FROM user WHERE id LIKE '"+id+"'";
     var name_query =  "SELECT * FROM user WHERE name LIKE '"+name+"'";
