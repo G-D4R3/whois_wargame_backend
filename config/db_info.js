@@ -4,8 +4,8 @@ var connect_inf = {
     host : 'localhost',
     port : '3306',
     user: "root",
-    password: "1234",
-    database: "wargame",
+    password: "rnjsgusqls0304",
+    database: "whois",
 }
 
 

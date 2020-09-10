@@ -1,30 +1,39 @@
-
 module.exports = (sequelize, DataTypes) => (
     sequelize.define('user', {
-        email: {
-            type: DataTypes.STRING(40),
+        num: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: true,
+            unique: true,
+            autoIncrement: true,
+            primaryKey: true,
+        },
+        name: {
+            type: DataTypes.STRING(15),
             allowNull: true,
             unique: true,
         },
-        nick: {
+        id: {
             type: DataTypes.STRING(15),
-            allowNull: false,
+            allowNull: true,
+            unique: true,
+            validate: {
+                isAlphanumeric: true,
+            }
         },
         password: {
-            type: DataTypes.STRING(100),
+            type: DataTypes.STRING(50),
             allowNull: true,
         },
-        provider: {
-            type: DataTypes.STRING(10),
-            allowNull: false,
-            defaultValue: 'local',
-        },
-        snsId: {
+        email: {
             type: DataTypes.STRING(30),
-            allowNull:true,
+            allowNull: true,
+            unique: true,
+            validate: {
+                isEmail: true,
+            }
         },
     }, {
-        timestamps: true,
-        paranoid: true,
+        timestamps: false,
+        paranoid: false,
     })
 );
