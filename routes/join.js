@@ -37,18 +37,18 @@ router.post('/', function(req, res, next){
                         if(res3.count === 0){
                             if (validator.isEmail(email)){
                                 if (validator.isAlphanumeric(id)){
+                                    const hash = bcrypt.hashSync(pw, 12);
                                         models.User.create({
                                         email: email,
                                         id: id,
                                         name: name,
-                                        password: pw
+                                        password: hash,
                                         })
                                         .then( res4 => {
                                             res.status(201).json({
                                             email: email,
                                             id: id,
-                                            name: name,
-                                            password: pw
+                                            name: name
                                             });
                                         })
                                         .catch(err4 => {
