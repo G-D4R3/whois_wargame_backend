@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "rnjsgusqls0304",
+    "password": "1234",
     "database": "whois",
     "host": "127.0.0.1",
     "dialect": "mysql",

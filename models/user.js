@@ -32,6 +32,10 @@ module.exports = (sequelize, DataTypes) => (
                 isEmail: true,
             }
         },
+        score: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            default: 0,
+        },
     }, {
         timestamps: false,
         paranoid: false,
