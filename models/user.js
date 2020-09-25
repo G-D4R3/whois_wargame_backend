@@ -1,20 +1,20 @@
 module.exports = (sequelize, DataTypes) => (
     sequelize.define('user', {
-        num: {
+        userID: {
             type: DataTypes.INTEGER.UNSIGNED,
-            allowNull: true,
+            allowNull: false,
             unique: true,
             autoIncrement: true,
             primaryKey: true,
         },
         name: {
             type: DataTypes.STRING(15),
-            allowNull: true,
+            allowNull: false,
             unique: true,
         },
         id: {
             type: DataTypes.STRING(15),
-            allowNull: true,
+            allowNull: false,
             unique: true,
             validate: {
                 isAlphanumeric: true,
@@ -22,11 +22,11 @@ module.exports = (sequelize, DataTypes) => (
         },
         password: {
             type: DataTypes.STRING(100),
-            allowNull: true,
+            allowNull: false,
         },
         email: {
             type: DataTypes.STRING(30),
-            allowNull: true,
+            allowNull: false,
             unique: true,
             validate: {
                 isEmail: true,
