@@ -14,7 +14,7 @@ sequelize.sync();
 var joinRouter = require('./routes/join');
 var loginRouter = require('./routes/login');
 var scoreRouter = require('./routes/score');
-//var challengesRouter = require('./routes/challenges');
+var challengesRouter = require('./routes/challenges');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -25,7 +25,7 @@ app.use(cors());
 app.use('/api/join', joinRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/score', scoreRouter);
-//app.use('/api/challenges', challengesRouter);
+app.use('/api/challenges', challengesRouter);
 
 
 app.listen(PORT, () => {
