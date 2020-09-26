@@ -6,14 +6,11 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', function(req, res, next){
-    models.User.findAll({
-        attributes: ['name', 'score']
-    })
+    models.Problem.findAll()
         .then(res1 => {
-            res1.sort(function(a, b){
-                return a.score > b.score ? -1 : a.score > b.score ? 1 : 0;
-            })
+            //사용자 문풀 체크
             res.json(res1);
+            console.log(res1);
         })
         .catch(err => {
             console.log(err);
