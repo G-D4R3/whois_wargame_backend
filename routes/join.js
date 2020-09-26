@@ -4,10 +4,13 @@ const models = require('../models');
 var bodyParser = require('body-parser')
 const validator = require('validator');
 const bcrypt = require('bcrypt');
+const passport = require('passport');
+
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 const router = express.Router();
 
-router.post('/', function(req, res, next){
+router.post('/',  isNotLoggedIn,function(req, res, next){
     const name = req.body.name;
     const id = req.body.id;
     const pw = req.body.password;
@@ -50,9 +53,11 @@ router.post('/', function(req, res, next){
                                             id: id,
                                             name: name
                                             });
+                                            res.redirect('/');
                                         })
                                         .catch(err4 => {
                                             console.log(err4);
+                                            return next(error);
                                         })
                                     }
                                 else return res.status(400).json({message: "유효하지 않은 아이디입니다"});

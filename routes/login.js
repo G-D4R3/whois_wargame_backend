@@ -5,9 +5,33 @@ var dbConObj = require('../config/db_info');
 var bodyParser = require('body-parser')
 var dbconnect = dbConObj.init();
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 
 const router = express.Router();
 
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
+
+router.post('/', isNotLoggedIn, (req, res, next) => {
+    passport.authenticate('local', (authError, user, info) => {
+        if (authError) {
+            console.error(authError);
+            return next(authError);
+        }
+        if (!user){
+            req.flash('loginError', info.message);
+            return res.json(info);
+        }
+        return req.login(user, (loginError) => {
+            if(loginError) {
+                console.error(loginError);
+                return next(loginError);
+            }
+            return res.json({user});
+        });
+    })(req, res, next);
+});
+
+/*
 router.post('/', function(req, res, next){
     const id = req.body.id;
     const pw = req.body.password;
@@ -37,4 +61,5 @@ router.post('/', function(req, res, next){
         console.log(err1);
     })
 })
+*/
 module.exports = router;
