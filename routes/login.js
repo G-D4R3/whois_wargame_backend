@@ -11,6 +11,13 @@ const router = express.Router();
 
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
+router.get('/', (req, res, next) => {
+    if (req.isAuthenticated() && req.user) {
+        return res.json({user: req.user});
+    }
+    return res.json({user:null});
+})
+
 router.post('/', isNotLoggedIn, (req, res, next) => {
     passport.authenticate('local', (authError, user, info) => {
         if (authError) {
