@@ -12,4 +12,16 @@ db.Sequelize = Sequelize;
 db.User =  require('./user')(sequelize, Sequelize);
 db.Problem =  require('./problem')(sequelize, Sequelize);
 
+db.User.belongsToMany(db.Problem, {
+  through: 'solved',
+  foreignKey: 'userID'
+});
+
+
+db.Problem.belongsToMany(db.User, {
+  through: 'solved',
+  foreignKey: 'problemID'
+});
+
+
 module.exports = db;
