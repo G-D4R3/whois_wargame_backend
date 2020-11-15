@@ -18,14 +18,16 @@ router.get('/', isLoggedIn, function(req, res, next){
         })
 });
 */
-router.get('/', isLoggedIn, async (req, res, next) => {
-	models.User.findAll({
+
+router.get('/', isLoggedIn, (req, res, next) => {
+	models.Solved.findAndCountAll({
 		where: {
-			id: req.user.userID
+			userID: req.user.userID
 		}
 	})
-	.then (res1 => res1.getProblems())
-	.then(res2 => console.log(problems))
+	.then (res1 => {
+		console.log(JSON.stringify(res1.rows, ["problemID"]));
+	})
 	.catch(err => {
 		console.log(err);
 	})

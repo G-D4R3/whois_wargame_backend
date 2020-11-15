@@ -24,6 +24,7 @@ var loginRouter = require('./routes/login');
 var scoreRouter = require('./routes/score');
 var challengesRouter = require('./routes/challenges');
 var logoutRouter = require('./routes/logout');
+var adminRouter = require('./routes/admin');
 
 app.use(logger('dev'));
 app.use(express.json());

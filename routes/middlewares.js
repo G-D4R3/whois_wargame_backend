@@ -13,3 +13,8 @@ exports.isNotLoggedIn = (req, res, next) => {
 		res.redirect('/');
 	}
 };
+
+exports.noPermission = (req, res) => {
+	req.flash('errors', {login : "You don't have permission"});
+	res.redirect('/');
+}
