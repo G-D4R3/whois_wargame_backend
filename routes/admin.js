@@ -40,7 +40,7 @@ router.get('/edit/:id',checkPermission, (req, res, next) => {
         })
     }); // 수정하기 위해 아이디로 수정할 문제 정보 받아오는 기능
 
-router.put('/:id', checkPermission, (res, req, next) => {
+router.put('/:id', checkPermission, (req, res, next) => {
     const problemID = req.params.id;
     const body = req.body;
 
@@ -61,8 +61,8 @@ router.put('/:id', checkPermission, (res, req, next) => {
         })
 });//수정해서 업데이트 하는 기능
 
-router.delete('/:id', checkPermission, (res, req, next)=> {
-    const id = res.body.id;
+router.delete('/:id', checkPermission, (req, res, next)=> {
+    const id = req.body.id;
 
     models.Problem.destroy({
         where: {
@@ -79,6 +79,6 @@ router.delete('/:id', checkPermission, (res, req, next)=> {
 
 function checkPermission(req, res, next){
     const id = req.body.id;
-    if (id === 'admin') return noPermission(req,res);
+    if (id != 'admin') return noPermission(req,res);
     next();
 }
